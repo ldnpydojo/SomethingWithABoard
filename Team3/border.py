@@ -12,13 +12,25 @@ borders += list(b.iterline((0, 1), (0, 1)))
 borders += list(b.iterline((size - 2, 0), (-1, 0)))
 borders += list(b.iterline((size - 1, size - 2), (0, -1)))
 borders += list(b.iterline((1, size - 1), (1, 0)))
-r = random.randint(0, len(borders) - 1)
+
+r = None
+
+while True:
+    r = random.choice(borders)
+    
+    if (r == (0, 0) or
+        r == (0, size - 1) or
+        r == (size - 1, size - 1) or
+            r == (size - 1, 0)):
+        continue
+    
+    break
 
 print(borders)
 
 for item in borders:
     b[item] = '#'
 
-b[borders[r]] = 'X'
+b[r] = 'X'
 
 b.draw()
