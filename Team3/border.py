@@ -19,7 +19,7 @@ def make_borders(b):
         r = random.choice(borders)
         if not b.is_corner(r):
             b[r] = 'X'
-            break
+            return r
 
 if __name__ == '__main__':
     b = Board((size, size))
