@@ -26,8 +26,6 @@ while True:
     
     break
 
-print(borders)
-
 for item in borders:
     b[item] = '#'
 
