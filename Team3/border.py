@@ -3,32 +3,25 @@ from board import Board
 
 size = 10
 
-b = Board((size, size))
-b.populate(' ' * (size * size))
+def make_borders(b):
 
-borders = []
+    borders = []
 
-borders += list(b.iterline((0, 1), (0, 1)))
-borders += list(b.iterline((size - 2, 0), (-1, 0)))
-borders += list(b.iterline((size - 1, size - 2), (0, -1)))
-borders += list(b.iterline((1, size - 1), (1, 0)))
+    borders += list(b.iterline((0, 1), (0, 1)))
+    borders += list(b.iterline((size - 2, 0), (-1, 0)))
+    borders += list(b.iterline((size - 1, size - 2), (0, -1)))
+    borders += list(b.iterline((1, size - 1), (1, 0)))
 
-r = None
+    for item in borders:
+        b[item] = '#'
 
-while True:
-    r = random.choice(borders)
-    
-    if (r == (0, 0) or
-        r == (0, size - 1) or
-        r == (size - 1, size - 1) or
-            r == (size - 1, 0)):
-        continue
-    
-    break
+    while True:
+        r = random.choice(borders)
+        if not b.is_corner(r):
+            b[r] = 'X'
+            break
 
-for item in borders:
-    b[item] = '#'
-
-b[r] = 'X'
-
-b.draw()
+if __name__ == '__main__':
+    b = Board((size, size))
+    make_borders(b)
+    b.draw()
