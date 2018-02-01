@@ -56,15 +56,16 @@ def solve_maze(maze, entrance, exit):
     }
 
     for h in heuristics:
+        m = maze.copy()
         print(f'using {h}')
         print(heuristics[h])
         path = search(maze, entrance, exit, heuristic=heuristics[h])
-        maze[entrance] = 0
+        m[entrance] = 0
 
         if path is not None:
             for i, coord in enumerate(path):
-                maze[coord] = i + 1
-            maze.draw()
+                m[coord] = i + 1
+            m.draw()
         else:
             print('There is no solution!')
 
