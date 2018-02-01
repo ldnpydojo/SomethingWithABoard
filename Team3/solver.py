@@ -1,6 +1,10 @@
 import board
 from board import Empty
 
+def manhattan_distance(a, b):
+    return abs(a[0] - b[0]) + abs(a[1] - b[1])
+
+
 def get_neighbours(coord, b):
     x = coord[0]
     y = coord[1]
@@ -12,7 +16,7 @@ def get_neighbours(coord, b):
         (x, y + 1),
     ]
 
-    return [coord for coord in neighbours if coord in b and b[coord] != 'X']
+    return [coord for coord in neighbours if coord in b and b[coord] != '#']
 
 
 def search(b, node, destination, visited=None, path=None):
